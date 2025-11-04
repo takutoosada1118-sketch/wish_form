@@ -1,25 +1,34 @@
+import requests
 from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
+# ✨ ここにあなたのGASのURLを貼り付けてください ✨
+SCRIPT_URL = "https://script.google.com/macros/s/あなたのURL/exec"
+
 @app.route('/', methods=['GET', 'POST'])
-def form():
+def wish_form():
     if request.method == 'POST':
         name = request.form['name']
         color = request.form['color']
         hometown = request.form['hometown']
         wish = request.form['wish']
 
-        print("==== フォームの送信を受け取りました ====")
-        print(f"名前: {name}")
-        print(f"灯籠の色: {color}")
-        print(f"出身地: {hometown}")
-        print(f"願いごと: {wish}")
-        print("=========================================")
+        # Googleスプレッドシートへ送信
+        data = {
+            "name": name,
+            "color": color,
+            "hometown": hometown,
+            "wish": wish
+        }
+        try:
+            requests.post(SCRIPT_URL, json=data)
+            print("✅ Google Sheetsに送信しました！")
+        except Exception as e:
+            print("⚠️ 送信エラー:", e)
 
         return render_template('result.html', name=name, color=color, hometown=hometown, wish=wish)
-
     return render_template('form.html')
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
