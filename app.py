@@ -4,7 +4,7 @@ from flask import Flask, render_template, request
 app = Flask(__name__)
 
 # ✨ ここにあなたのGASのURLを貼り付けてください ✨
-SCRIPT_URL = "https://docs.google.com/spreadsheets/d/1CWRanrAKtjzicCa4I1qUWNdfs-GnL6z7vxHWA6PSK-s/edit?usp=sharing"
+SCRIPT_URL = "https://docs.google.com/spreadsheets/d/1CWRanrAKtjzicCa4I1qUWNdfs-GnL6z7vxHWA6PSK-s/edit?usp=sharing/exec"
 
 @app.route('/', methods=['GET', 'POST'])
 def wish_form():
