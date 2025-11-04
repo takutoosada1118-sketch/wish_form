@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>願いが届きました✨</title>
+    <style>
+        body {
+            font-family: "Yu Gothic UI", sans-serif;
+            background-color: #fffdf8;
+            text-align: center;
+            padding-top: 50px;
+        }
+        .card {
+            background-color: white;
+            display: inline-block;
+            padding: 30px 50px;
+            border-radius: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .color-box {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin: 10px auto;
+        }
+        .red { background-color: #ff4b4b; }
+        .blue { background-color: #4b6eff; }
+        .white { background-color: #fdfdfd; border: 1px solid #ccc; }
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            color: #4b6eff;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>✨願いが届きました✨</h1>
+        <p>名前：{{ name }}</p>
+        <p>出身地：{{ hometown }}</p>
+        <div class="color-box {{ color }}"></div>
+        <p>灯籠の色：{{ color }}</p>
+        <p>願いごと：「{{ wish }}」</p>
+        <a href="/">← もう一度送る</a>
+    </div>
+</body>
+</html>

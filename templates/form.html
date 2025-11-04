@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>願いごとフォーム</title>
+    <style>
+        body {
+            font-family: "Yu Gothic UI", sans-serif;
+            background: linear-gradient(to bottom, #f7f7ff, #eaf4ff);
+            text-align: center;
+            padding-top: 50px;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+        }
+        form {
+            background-color: white;
+            display: inline-block;
+            padding: 30px 50px;
+            border-radius: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        input[type="text"] {
+            width: 200px;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+        .color-buttons {
+            margin: 10px 0;
+        }
+        .color-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: none;
+            margin: 0 8px;
+            cursor: pointer;
+            outline: none;
+        }
+        .red { background-color: #ff4b4b; }
+        .blue { background-color: #4b6eff; }
+        .white { background-color: #fdfdfd; border: 1px solid #ccc; }
+        .submit-btn {
+            background-color: #4b6eff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+        .submit-btn:hover {
+            background-color: #3a58d0;
+        }
+        p {
+            color: green;
+        }
+    </style>
+    <script>
+        function selectColor(color) {
+            document.getElementById("selected_color").value = color;
+            // ボタンの選択状態を見た目でわかるように
+            document.querySelectorAll(".color-btn").forEach(btn => btn.style.outline = "none");
+            document.querySelector("." + color).style.outline = "3px solid black";
+        }
+    </script>
+</head>
+<body>
+    <h1>あなたの願いごと🌟</h1>
+
+    {% if message %}
+        <p>{{ message }}</p>
+    {% endif %}
+
+    <form action="/" method="POST">
+        <p>名前：</p>
+        <input type="text" name="name" placeholder="例：たろう" required><br>
+
+        <p>出身地：</p>
+        <input type="text" name="hometown" placeholder="例：仙台" required><br>
+
+        <p>灯籠の色：</p>
+        <div class="color-buttons">
+            <button type="button" class="color-btn red" onclick="selectColor('red')"></button>
+            <button type="button" class="color-btn blue" onclick="selectColor('blue')"></button>
+            <button type="button" class="color-btn white" onclick="selectColor('white')"></button>
+        </div>
+        <input type="hidden" name="color" id="selected_color" required>
+
+        <p>願いごと：</p>
+        <input type="text" name="wish" placeholder="例：世界平和" required><br>
+
+        <button type="submit" class="submit-btn">送信</button>
+    </form>
+</body>
+</html>
