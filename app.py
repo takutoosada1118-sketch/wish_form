@@ -23,7 +23,7 @@ def wish_form():
         }
         try:
             requests.post(SCRIPT_URL, json=data)
-            print("✅ Google Sheetsに送信しました！")
+            print("✅ Google Sheetsに送信しました")
         except Exception as e:
             print("⚠️ 送信エラー:", e)
 
